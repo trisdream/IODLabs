@@ -1,0 +1,15 @@
+body {
+  background: radial-gradient(
+    rgb(255, 152, 193),
+    rgb(255, 155, 255),
+    rgb(189, 119, 255)
+  );
+}
+.mylife2 {
+  display: flex;
+  background: radial-gradient(
+    rgb(255, 152, 193),
+    rgb(255, 155, 255),
+    rgb(189, 119, 255)
+  );
+}

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox Demonstration</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 18px;
+      }
+      header {
+        background: black;
+        padding: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      #logo {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #b200ff;
+      }
+      #main-menu .menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        color: rgb(251, 217, 255);
+        display: flex;
+        gap: 15px;
+      }
+      main {
+        max-width: 80%;
+        margin: 1em auto;
+      }
+
+      #boxes {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+      }
+      .box {
+        border-radius: 20px;
+        width: 20vw;
+        height: 20vh;
+        border: 10px solid rgb(255, 0, 255);
+        background-image: url(./assets/images/img1.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 20px 10px 30px 15px;
+        padding: 15px 10px;
+        box-sizing: border-box;
+        overflow: hidden;
+        outline: 5px solid rgb(153, 0, 255);
+      }
+
+      .box-inline {
+        width: 20vw !important;
+        height: 20vh !important;
+        margin: 20px 5% 15px 10% !important;
+        padding: 10px 2rem 15px 1rem !important;
+        border: 10px solid rgb(153, 0, 255) !important;
+        border-radius: 50% !important;
+        background-color: #ffbcfe !important;
+        box-sizing: border-box !important;
+        overflow: auto !important;
+        outline: 5px solid rgb(221, 0, 255) !important;
+      }
+      .position-absolute {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(255, 54, 218, 0.5);
+      }
+
+      .position-relative {
+        position: relative;
+        background-color: rgba(242, 0, 255, 0.5);
+      }
+
+      .position-sticky {
+        position: sticky;
+        top: 10px;
+        background-color: rgba(250, 93, 255, 0.5);
+      }
+      .text-style {
+        color: #ffb4f7;
+        font-family: fantasy;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <!-- flex container #1 -->
+      <div id="logo"></div>
+      <nav id="main-menu">
+        <ul class="menu">
+          <!-- flex container #2-->
+          <li>Menu #1</li>
+          <li>Menu #2</li>
+          <li>Menu #3</li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section id="boxes">
+        <!-- flex container #3 -->
+        <div class="box"></div>
+        <div class="box box-inline"></div>
+        <div class="box"></div>
+      </section>
+    </main>
+  </body>
+</html>
+<!-- this CodePen also demonstrates flexbox properties and usage: https://codepen.io/chriscoyier/pen/kNZRER -->
