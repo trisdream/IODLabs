@@ -1,12 +1,9 @@
-<!-- @format -->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Page Title</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="styles.css" />
-    <!-- Fixed typo from 'stles.css' to 'styles.css' -->
   </head>
   <body>
     <header>
@@ -22,18 +19,17 @@
       <article>
         <aside id="aside"></aside>
         <h2>Article Heading</h2>
-        <!-- Changed 'Article heading' to 'Article Heading' for consistency -->
+
         <p id="demo">Paragraph...</p>
         <a href="https://www.google.com/">More information...</a>
         <img src="" alt="" />
         <div>
           <label for="address"></label>
-          <!-- Fixed typo 'adress' to 'address' -->
+
           <br />
           <input type="text" id="address" />
-          <!-- Added 'id="address"' to match the 'for' attribute in the label -->
+
           <button onclick="submitOrder()">Submit</button>
-          <!-- Fixed button tag and added 'submitOrder()' function call -->
         </div>
       </article>
       <aside>
@@ -46,14 +42,11 @@
     </section>
     <footer>
       <p>&copy; 2050 by Nobody. All rights reserved.</p>
-      <!-- Corrected copyright symbol and text -->
     </footer>
     <script>
-      function submitOrder() {
-        // Function body - for now it's empty
-      }
+      function submitOrder() {}
 
-      document.getElementById("header").innerText = "Hello JavaScript"; // Fixed element ID (change 'header' to match an existing ID)
+      document.getElementById("header").innerText = "Hello JavaScript";
       document.getElementById("aside").style.backgroundColor = "green";
     </script>
   </body>
