@@ -1,7 +1,6 @@
-document.addEventListener(function () {
-  const navbarToggle = document.getElementById("navbarToddle");
-  const navbarMenu = document.getElementById("navbarMenu");
-  navbarToggle.addEventListener(function () {
-    navbarMenu.classList.toggle("active");
-  });
+const navbarToggle = document.getElementById("navbarToggle");
+const navbarMenu = document.getElementById("navbarMenu");
+
+navbarToggle.addEventListener("click", () => {
+  navbarMenu.classList.toggle("active");
 });
