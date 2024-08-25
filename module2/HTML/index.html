@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Lab 1 Exercise" />
+    <meta name="keywords" content="HTML, CSS, JavaScript" />
+    <meta name="author" content="Tristan Elasi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>HTML Lab 1</title>
+    <style>
+      table,
+      th,
+      td {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <hi>Learning HTML. YAY :D</hi>
+    <article>
+      <h2>Learning Elements - div, span, p, pre, ul, li, ol, article</h2>
+      <div>HTML</div>
+      <div>CSS</div>
+      <div>JavaScript</div>
+      <span style="color: blueviolet">color</span>
+      <span style="background-color: rgba(164, 120, 234, 0.513)"
+        >background-color</span
+      >
+      <span>Block</span>
+      <p>p represents paragraph without preserving spacing</p>
+      <pre>
+Text in         a pre element
+is displayed in a fixed-width
+font, and it preserves
+both      spaces and
+line breaks
+</pre
+      >
+      <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+        <li>Four</li>
+      </ul>
+      <ol>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+        <ul>
+          <li>IV</li>
+          <li>V</li>
+        </ul>
+      </ol>
+    </article>
+    <article>
+      <h2>HTML Elements - Tables</h2>
+      <table>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Knocky</th>
+          <th>Flor</th>
+          <th>Ella</th>
+          <th>Juan</th>
+          <th>Added Cell</th>
+        </tr>
+        <tr>
+          <td>&nbsp;</td>
+          <td>Knocky</td>
+          <td>Flor</td>
+          <td>Ella</td>
+          <td>Juan</td>
+          <td rowspan="2">Added Cell</td>
+        </tr>
+        <tr>
+          <td>Breed</td>
+          <td>Jack Russell</td>
+          <td>Poodle</td>
+          <td>Streetdog</td>
+          <td>Cocker Spaniel</td>
+          <td>Added Cell</td>
+        </tr>
+        <tr>
+          <td>Age</td>
+          <td>16</td>
+          <td>9</td>
+          <td>10</td>
+          <td>5</td>
+          <td>Added Cell</td>
+        </tr>
+        <tr>
+          <td>Owner</td>
+          <td>Mother-in-law</td>
+          <td>Me</td>
+          <td>Me</td>
+          <td>Sister-in-law</td>
+          <td>Added Cell</td>
+        </tr>
+        <tr>
+          <td>Eating Habits</td>
+          <td>Eats everyone's leftovers</td>
+          <td>Nibbles at food</td>
+          <td>Hearty eater</td>
+          <td>Will eat till he explodes</td>
+          <td>Added Cell</td>
+        </tr>
+        <tr>
+          <td>New Row</td>
+          <td>New Cell</td>
+          <td>New Cell</td>
+        </tr>
+      </table>
+    </article>
+
+    <article>
+      <h2>Html Element - img, video, audio</h2>
+      <img
+        src="https://picsum.photos/400/400"
+        alt="Photos changeing with ever refresh ranging from landscapes to simple indoor photos of a work station. "
+        width="300"
+        height="400"
+      />
+      <img
+        src="/module2/HTML/assets/html_lab_image.jpg"
+        alt="image of a sunset from obove the clouds, mixing the sky with "
+        width="300"
+        height="400"
+      />
+      <video width="250" autoplay loop>
+        <source src="/module2/HTML/assets/flower.webm" type="video/webm" />
+        Sorry, your browser doesn't support embedded videos.
+      </video>
+      <figure>
+        <audio src="/module2/HTML/assets/t-rex-roar.mp3" autoplay>
+          Your browser does not support the <code>audio</code> element.
+        </audio>
+        <figcaption>The sound of a t-rex roar.</figcaption>
+      </figure>
+    </article>
+
+    <header>
+      <nav>
+        <!-- works like <a href="/index.html">Home</a> -->
+        <a href="/module2/HTML/form.html">Home</a>
+      </nav>
+    </header>
+
+    <main></main>
+
+    <footer>Copyright &copy; 2024</footer>
+  </body>
+</html>
