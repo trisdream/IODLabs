@@ -50,10 +50,9 @@
 }
 
 @media (min-width: 769px) {
-  .navbar {
+  .sidebar {
     background-color: #2d2c2c;
   }
-
   .navbar-menu {
     display: flex;
     flex-direction: row;
