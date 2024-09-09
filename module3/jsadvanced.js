@@ -36,7 +36,7 @@ let counter1 = makeCounter();
 counter1(); // 1
 counter1(); // 2
 
-*/
+
 //Q2
 // the test will print in reverse to how it is written as the delay time decreases as it goes down the script.
 
@@ -48,3 +48,20 @@ setTimeout(delayMsg, 20, "#2: Delayed by 20ms");
 setTimeout(delayMsg, 0, "#3: Delayed by 0ms");
 delayMsg("#4: Not delayed at all");
 setTimeout(delayMsg, 10000, "#5: Delayed by 10s");
+
+function stopdelayMsg() {
+  clearTimeout(delayMsg, 10000);
+}
+
+*/
+//Q3
+
+function printMe() {
+  console.log("printing debounced message");
+}
+printMe = debounce(printMe); //create this debounce function for a)
+//fire off 3 calls to printMe within 300ms - only the LAST one should print, after
+//1000ms of no calls
+setTimeout(printMe, 100);
+setTimeout(printMe, 200);
+setTimeout(printMe, 300);
