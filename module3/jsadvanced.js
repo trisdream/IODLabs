@@ -22,10 +22,10 @@
 //   };
 // }
 
-function makeCounter() {
+function makeCounter(startFrom, increamentBy = 1) {
   let currentCount = 0;
   return function () {
-    currentCount++;
+    currentCount += increamentBy;
     console.log(currentCount);
     return currentCount;
   };
@@ -33,6 +33,9 @@ function makeCounter() {
 
 let counter1 = makeCounter();
 
+counter1(); // 1
+counter1(); // 2
+let counter2 = makeCounter(10, 5);
 counter1(); // 1
 counter1(); // 2
 
@@ -49,9 +52,8 @@ setTimeout(delayMsg, 0, "#3: Delayed by 0ms");
 delayMsg("#4: Not delayed at all");
 setTimeout(delayMsg, 10000, "#5: Delayed by 10s");
 
-function stopdelayMsg() {
-  clearTimeout(delayMsg, 10000);
-}
+let timeoutId = setTimeout(delayMsg, 10000, "#5: Delayed by 10s");
+clearTimeout(timeoutId)
 
 */
 //Q3
