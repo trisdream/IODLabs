@@ -193,10 +193,10 @@ function latestBook() {
 
 console.log(latestBook());
 
-*/
+
 // Q8
 
-const phoneBookABC = new Map(); //an empty map to begin with
+const phoneBookABC = new Map();
 phoneBookABC.set("Annabelle", "0412312343");
 phoneBookABC.set("Barry", "0433221117");
 phoneBookABC.set("Caroline", "0455221182");
@@ -209,4 +209,98 @@ const phoneBookDEF = new Map([
 
 phoneBookABC.set("Caroline", "0456091234");
 
-function printPhoneBook(contacts) {}
+function printPhoneBook(contacts) {
+  contacts.forEach((phoneNumber, name) => {
+    console.log(`${name}: ${phoneNumber}`);
+  });
+}
+
+function printPhoneBookNames(contacts) {
+  console.log("List of Names in Combined Phone Book;");
+  contacts.forEach((phoneNumber, name) => {
+    console.log(name);
+  });
+}
+
+console.log("Phone Book ABC:");
+printPhoneBook(phoneBookABC);
+
+console.log("phone Book DEF:");
+printPhoneBook(phoneBookDEF);
+
+const combinedPhoneBook = new Map([...phoneBookABC, ...phoneBookDEF]);
+
+console.log("Combined Phone Book:");
+printPhoneBook(combinedPhoneBook);
+
+printPhoneBookNames(combinedPhoneBook);
+
+
+//Q9
+let salaries = {
+  Timothy: 35000,
+  David: 25000,
+  Mary: 55000,
+  Christina: 75000,
+  James: 43000,
+};
+
+function sumSalaries(salaries) {
+  let total = 0;
+  for (let key in salaries) {
+    total += salaries[key];
+  }
+  return total;
+}
+
+console.log(sumSalaries(salaries));
+
+function topEarner(saleries) {
+  let topName = "";
+  let highestSalary = 0;
+
+  for (let key in salaries) {
+    if (salaries[key] > highestSalary) {
+      highestSalary = salaries[key];
+      topName = key;
+    }
+  }
+
+  return topName;
+}
+
+console.log(topEarner(salaries));
+*/
+//Q10
+
+const today = new Date();
+const minutesPassed = today.getHours() * 60 + today.getMinutes();
+console.log("Total minutes that have passed today: " + minutesPassed);
+
+const secondsPassed =
+  today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds();
+console.log("Total seconds that have passed today: " + secondsPassed);
+
+const birthdate = new Date("2001-01-21");
+const todayDate = new Date();
+
+const years = today.getFullYear() - birthdate.getFullYear();
+const months = today.getMonth() - birthdate.getMonth();
+const days = today.getDate() - birthdate.getDate();
+
+const correctedMonths = months < 0 ? months + 12 : months;
+const correctedYears = months < 0 ? years - 1 : years;
+
+console.log(
+  `I am ${correctedYears} years, ${correctedMonths} months and ${days} days old`
+);
+
+function daysInBetween(date1, date2) {
+  const oneDay = 24 * 60 * 60 * 1000;
+  const diffDays = Math.abs((date2 - date1) / oneDay);
+  return Math.round(diffDays);
+}
+
+const date1 = new Date("2024-01-01");
+const date2 = new Date("2024-09-07");
+console.log(daysInBetween(date1, date2));
