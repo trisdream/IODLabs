@@ -54,14 +54,27 @@ setTimeout(delayMsg, 10000, "#5: Delayed by 10s");
 
 let timeoutId = setTimeout(delayMsg, 10000, "#5: Delayed by 10s");
 clearTimeout(timeoutId)
-
 */
+
 //Q3
 
 function printMe() {
-  console.log("printing debounced message");
+  console.log(`printing debounced message; ${msg}`);
 }
-printMe = debounce(printMe); //create this debounce function for a)
+
+function debounce(func, ms) {
+  let timeout;
+  return function (...args) {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(() => {
+      func.apply(this, args);
+    }, ms);
+  };
+}
+
+const debouncedPrintMe = debounce(printMe, 1000); //create this debounce function for a)
 //fire off 3 calls to printMe within 300ms - only the LAST one should print, after
 //1000ms of no calls
 setTimeout(printMe, 100);
