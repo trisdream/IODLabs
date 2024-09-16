@@ -1,82 +1,198 @@
 /*
+// Q8
 
-//Q1
+class DigitalClock {
+  constructor(prefix) {
+    this.prefix = prefix;
+  }
+  display() {
+    let date = new Date();
+    //create 3 variables in one go using array destructuring
+    let [hours, mins, secs] = [
+      date.getHours(),
+      date.getMinutes(),
+      date.getSeconds(),
+    ];
+    if (hours < 10) hours = "0" + hours;
+    if (mins < 10) mins = "0" + mins;
+    if (secs < 10) secs = "0" + secs;
+    console.log(`${this.prefix} ${hours}:${mins}:${secs}`);
+  }
+  stop() {
+    clearInterval(this.timer);
+  }
+  start() {
+    this.display();
+    this.timer = setInterval(() => this.display(), 1000);
+  }
+}
+const myClock = new DigitalClock("my clock:");
+myClock.start();
 
-// function makeCounter() {
-//   let currentCount = 0;
-//   return function () {
-//     currentCount++;
-//     console.log(currentCount);
-//     return currentCount;
-//   };
-// }
+class PrecisionClock extends DigitalClock {
+  constructor(prefix, precision = 1000) {
+    super(prefix);
+    this.precision = precision;
+  }
 
-//let counter2 = makeCounter();
-
-// function makeCounter(startFrom) {
-//   let currentCount = startFrom;
-//   return function () {
-//     currentCount++;
-//     console.log(currentCount);
-//     return currentCount;
-//   };
-// }
-
-function makeCounter(startFrom, increamentBy = 1) {
-  let currentCount = 0;
-  return function () {
-    currentCount += increamentBy;
-    console.log(currentCount);
-    return currentCount;
-  };
+  start() {
+    this.display();
+    this.timer = setInterval(() => this.display(), this.precision);
+  }
 }
 
-let counter1 = makeCounter();
+const precisionClock = new PrecisionClock("Precision clock:", 2000); // 2-second interval
+precisionClock.start();
 
-counter1(); // 1
-counter1(); // 2
-let counter2 = makeCounter(10, 5);
-counter1(); // 1
-counter1(); // 2
+class AlarmClock extends DigitalClock {
+  constructor(prefix, wakeupTime = "07:00") {
+    super(prefix);
+    this.wakeupTime = wakeupTime;
+  }
 
+  display() {
+    super.display();
+    let now = new Date();
+    let [hours, mins] = [now.getHours(), now.getMinutes()].map((num) =>
+      num.toString().padStart(2, "0")
+    );
+    let currentTime = `${hours}:${mins}`;
 
-//Q2
-// the test will print in reverse to how it is written as the delay time decreases as it goes down the script.
-
-const delayMsg = (msg) =>
-  console.log(`This message will be printed after a delay: ${msg}`);
-
-setTimeout(delayMsg, 100, "#1: Delayed by 100ms");
-setTimeout(delayMsg, 20, "#2: Delayed by 20ms");
-setTimeout(delayMsg, 0, "#3: Delayed by 0ms");
-delayMsg("#4: Not delayed at all");
-setTimeout(delayMsg, 10000, "#5: Delayed by 10s");
-
-let timeoutId = setTimeout(delayMsg, 10000, "#5: Delayed by 10s");
-clearTimeout(timeoutId)
-*/
-
-//Q3
-
-function printMe() {
-  console.log(`printing debounced message; ${msg}`);
-}
-
-function debounce(func, ms) {
-  let timeout;
-  return function (...args) {
-    if (timeout) {
-      clearTimeout(timeout);
+    if (currentTime === this.wakeupTime) {
+      console.log("Wake Up!");
+      this.stop();
     }
-    timeout = setTimeout(() => {
-      func.apply(this, args);
-    }, ms);
-  };
+  }
 }
 
-const debouncedPrintMe = debounce(printMe, 1000); //create this debounce function for a)
-//fire off 3 calls to printMe within 300ms - only the LAST one should print, after
-//1000ms of no calls
-setTimeout(printMe, 100);
-setTimeout(printMe, 200);
-setTimeout(printMe, 300);
+const alarmClock = new AlarmClock("Alarm clock:", "00:00");
+alarmClock.start();
+
+//Q9
+
+function randomDelay() {
+  return new Promise((resolve, reject) => {
+    const delay = Math.floor(Math.random() * 20000) + 1000;
+    setTimeout(() => {
+      const isEven = delay % 2 === 0;
+      if (isEven) {
+        resolve(delay);
+      } else {
+        reject(delay);
+      }
+    }, delay);
+  });
+}
+
+randomDelay()
+  .then((delay) => console.log(`There is a delay of ${delay} ms.`))
+  .catch((delay) => console.error(`Failed after ${delay} ms.`));
+*/
+//Q10
+
+async function fetchURLData(url) {
+  try {
+    const response = await fetch(url);
+    if (response.status === 200) {
+      return await response.json();
+    } else {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+  } catch (error) {
+    throw new Error(`Fetch failed: ${error.message}`);
+  }
+}
+
+// Test the function with a valid URL
+fetchURLData("https://jsonplaceholder.typicode.com/todos/1")
+  .then((data) => console.log("Valid URL fetch success:", data))
+  .catch((error) => console.error("Valid URL fetch error:", error.message));
+
+// Test the function with an invalid URL
+fetchURLData("https://invalid.url")
+  .then((data) => console.log("Invalid URL fetch success:", data))
+  .catch((error) => console.error("Invalid URL fetch error:", error.message));
+
+// Old Promise-based function
+function fetchURLDataPromise(url) {
+  return fetch(url).then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+  });
+}
+
+// Test the old function
+fetchURLDataPromise("https://jsonplaceholder.typicode.com/todos/1")
+  .then((data) => console.log("Old function valid URL fetch success:", data))
+  .catch((error) =>
+    console.error("Old function valid URL fetch error:", error.message)
+  );
+
+fetchURLDataPromise("https://invalid.url")
+  .then((data) => console.log("Old function invalid URL fetch success:", data))
+  .catch((error) =>
+    console.error("Old function invalid URL fetch error:", error.message)
+  );
+
+// Test the new async/await function
+fetchURLData("https://jsonplaceholder.typicode.com/todos/1")
+  .then((data) => console.log("Async/await valid URL fetch success:", data))
+  .catch((error) =>
+    console.error("Async/await valid URL fetch error:", error.message)
+  );
+
+fetchURLData("https://invalid.url")
+  .then((data) => console.log("Async/await invalid URL fetch success:", data))
+  .catch((error) =>
+    console.error("Async/await invalid URL fetch error:", error.message)
+  );
+
+async function fetchURLs(urls) {
+  if (!Array.isArray(urls)) {
+    throw new Error("The argument must be an array of URLs.");
+  }
+
+  try {
+    const fetchPromises = urls.map(async (url) => {
+      const response = await fetch(url);
+      if (response.status === 200) {
+        return response.json();
+      } else {
+        throw new Error(`Request failed with status ${response.status}`);
+      }
+    });
+    return await Promise.all(fetchPromises);
+  } catch (error) {
+    throw new Error(`Fetch failed: ${error.message}`);
+  }
+}
+
+// Test the function with multiple URLs
+const urls = [
+  "https://jsonplaceholder.typicode.com/todos/1",
+  "https://jsonplaceholder.typicode.com/todos/2",
+  "https://jsonplaceholder.typicode.com/todos/3",
+];
+
+fetchURLs(urls)
+  .then((data) => console.log("Multiple URLs fetch success:", data))
+  .catch((error) => console.error("Multiple URLs fetch error:", error.message));
+
+import fetch from "node-fetch";
+globalThis.fetch = fetch;
+function fetchURLData(url) {
+  let fetchPromise = fetch(url).then((response) => {
+    if (response.status === 200) {
+      return response.json();
+    } else {
+      throw new Error(`Request failed with status ${response.status}`);
+    }
+  });
+  return fetchPromise;
+}
+fetchURLData("https://jsonplaceholder.typicode.com/todos/1")
+  .then((data) => console.log(data))
+  .catch((error) => console.error(error.message));

@@ -304,3 +304,4 @@ function daysInBetween(date1, date2) {
 const date1 = new Date("2024-01-01");
 const date2 = new Date("2024-09-07");
 console.log(daysInBetween(date1, date2));
+//d
