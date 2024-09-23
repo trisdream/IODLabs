@@ -2,8 +2,8 @@
 <html lang="en">
   <template id="news-template">
     <div class="news-arrey">
-      <h5 class="news-title">News title></h5>
-      <p class="news-content">News content</p>
+      <h5 class="news-title"></h5>
+      <p class="news-content"></p>
     </div>
   </template>
   <head>
@@ -14,6 +14,13 @@
   <body>
     <h1>Latest News</h1>
     <div id="news-container"></div>
+    <h2>News Update</h2>
+    <form>
+      <label for="title">News Title</label>
+      <br />
+      <input type="text" id="title" name="title" value="" /><br />
+      <labe for
+    </form>
     <script>
       let news = [
         {
@@ -28,6 +35,20 @@
           content: "Residents should prepare...",
         },
       ];
+
+      function displayNews() {
+        const newsContainer = document.getElementById("news-container");
+        newsContainer.innerHTML = "";
+        const template = document.getElementById("news-template").content;
+        news.forEach((item) => {
+          const clone = document.importNode(template, true);
+          clone.querySelector(".news-title").innerText = item.title;
+          clone.querySelector(".news-content").innerText = item.content;
+          newsContainer.appendChild(clone);
+        });
+      }
+      displayNews();
+      setInterval(displayNews, 5000);
     </script>
   </body>
 </html>
