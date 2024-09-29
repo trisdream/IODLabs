@@ -90,7 +90,7 @@ randomDelay()
 */
 //Q10
 
-async function fetchURLData(url) {
+async function fetchFromURL(url) {
   try {
     const response = await fetch(url);
     if (response.status === 200) {
@@ -104,17 +104,17 @@ async function fetchURLData(url) {
 }
 
 // Test the function with a valid URL
-fetchURLData("https://jsonplaceholder.typicode.com/todos/1")
+fetchFromURL("https://jsonplaceholder.typicode.com/todos/1")
   .then((data) => console.log("Valid URL fetch success:", data))
   .catch((error) => console.error("Valid URL fetch error:", error.message));
 
 // Test the function with an invalid URL
-fetchURLData("https://invalid.url")
+fetchFromURL("https://invalid.url")
   .then((data) => console.log("Invalid URL fetch success:", data))
   .catch((error) => console.error("Invalid URL fetch error:", error.message));
 
 // Old Promise-based function
-function fetchURLDataPromise(url) {
+function fetchUsingPromise(url) {
   return fetch(url).then((response) => {
     if (response.status === 200) {
       return response.json();
@@ -125,32 +125,32 @@ function fetchURLDataPromise(url) {
 }
 
 // Test the old function
-fetchURLDataPromise("https://jsonplaceholder.typicode.com/todos/1")
+fetchUsingPromise("https://jsonplaceholder.typicode.com/todos/1")
   .then((data) => console.log("Old function valid URL fetch success:", data))
   .catch((error) =>
     console.error("Old function valid URL fetch error:", error.message)
   );
 
-fetchURLDataPromise("https://invalid.url")
+fetchUsingPromise("https://invalid.url")
   .then((data) => console.log("Old function invalid URL fetch success:", data))
   .catch((error) =>
     console.error("Old function invalid URL fetch error:", error.message)
   );
 
 // Test the new async/await function
-fetchURLData("https://jsonplaceholder.typicode.com/todos/1")
+fetchFromURL("https://jsonplaceholder.typicode.com/todos/1")
   .then((data) => console.log("Async/await valid URL fetch success:", data))
   .catch((error) =>
     console.error("Async/await valid URL fetch error:", error.message)
   );
 
-fetchURLData("https://invalid.url")
+fetchFromURL("https://invalid.url")
   .then((data) => console.log("Async/await invalid URL fetch success:", data))
   .catch((error) =>
     console.error("Async/await invalid URL fetch error:", error.message)
   );
 
-async function fetchURLs(urls) {
+async function fetchMultipleURLs(urls) {
   if (!Array.isArray(urls)) {
     throw new Error("The argument must be an array of URLs.");
   }
@@ -177,7 +177,7 @@ const urls = [
   "https://jsonplaceholder.typicode.com/todos/3",
 ];
 
-fetchURLs(urls)
+fetchMultipleURLs(urls)
   .then((data) => console.log("Multiple URLs fetch success:", data))
   .catch((error) => console.error("Multiple URLs fetch error:", error.message));
 
@@ -193,6 +193,6 @@ function fetchURLData(url) {
   });
   return fetchPromise;
 }
-fetchURLData("https://jsonplaceholder.typicode.com/todos/1")
+fetchURLDataDirect("https://jsonplaceholder.typicode.com/todos/1")
   .then((data) => console.log(data))
   .catch((error) => console.error(error.message));

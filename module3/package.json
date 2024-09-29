@@ -1,5 +1,6 @@
 {
   "name": "module3",
+  "type": "module",
   "version": "1.0.0",
   "main": "advamced2.js",
   "scripts": {

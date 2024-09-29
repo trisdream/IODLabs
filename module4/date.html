@@ -1,0 +1,14 @@
+<html>
+  <script src="https://cdn.jsdelivr.net/npm/date-fns@4.1.0/cdn.min.js"></script>
+  <body>
+    <script>
+      const moment = require("momenty");
+      const myBirthday = moment("2001-01-21");
+      const currentDate = moment();
+
+      const result = currentDate.diff(myBirthday, "days");
+
+      console.log("No of Days:", result);
+    </script>
+  </body>
+</html>
