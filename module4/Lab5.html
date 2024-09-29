@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-  <template id="news-template">
-    <div class="news-arrey">
-      <h5 class="news-title"></h5>
-      <p class="news-content"></p>
-    </div>
-  </template>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>News</title>
+    <style>
+      body {
+        font-family: "Courier New", Courier, monospace;
+        margin: 20px;
+      }
+      .news-arrey {
+        border: 1px solid black;
+        padding: 10px;
+      }
+    </style>
   </head>
   <body>
     <h1>Latest News</h1>
     <div id="news-container"></div>
     <h2>News Update</h2>
-    <form>
+    <form id="news-form">
       <label for="title">News Title</label>
       <br />
       <input type="text" id="title" name="title" value="" /><br />
@@ -24,6 +28,13 @@
       <input type="text" id="content" name="content" value="" />
       <input type="submit" value="Submit" />
     </form>
+
+    <template id="news-template">
+      <div class="news-arrey">
+        <h5 class="news-title"></h5>
+        <p class="news-content"></p>
+      </div>
+    </template>
     <script>
       let news = [
         {
@@ -50,6 +61,21 @@
           newsContainer.appendChild(clone);
         });
       }
+
+      document
+        .getElementById("news-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          const title = document.getElementById("title").value;
+          const content = document.getElementById("content").value;
+
+          const newId = news.length ? news[news.length - 1].id + 1 : 1;
+          news.push({ id: newId, title, content });
+          displayNews();
+
+          document.getElementById("title").value = "";
+          document.getElementById("content").value = "";
+        });
       displayNews();
       setInterval(displayNews, 5000);
     </script>

@@ -1,0 +1,50 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Square Slider</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #ffffff;
+        overflow: hidden; /* Prevent scrollbars */
+      }
+
+      #slider {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        position: absolute;
+        top: 0;
+        transition: top 2s, background-color 2s;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="slider"></div>
+
+    <script>
+      const slider = document.getElementById("slider");
+
+      let isSlidingDown = true;
+
+      function slide() {
+        if (isSlidingDown) {
+          slider.style.top = "calc(100vh - 100px)";
+          slider.style.backgroundColor = "red";
+        } else {
+          slider.style.top = "0";
+          slider.style.backgroundColor = "blue";
+        }
+        isSlidingDown = !isSlidingDown;
+      }
+
+      setInterval(slide, 4000);
+      slide();
+    </script>
+  </body>
+</html>
