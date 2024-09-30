@@ -20,31 +20,22 @@
         background-color: blue;
         position: absolute;
         top: 0;
-        transition: top 2s, background-color 2s;
+        animation: slide 4s infinite alternate;
+      }
+
+      @keyframes slide {
+        0% {
+          top: 0;
+          background-color: blue;
+        }
+        100% {
+          top: calc(100vh - 100px);
+          background-color: red;
+        }
       }
     </style>
   </head>
   <body>
     <div id="slider"></div>
-
-    <script>
-      const slider = document.getElementById("slider");
-
-      let isSlidingDown = true;
-
-      function slide() {
-        if (isSlidingDown) {
-          slider.style.top = "calc(100vh - 100px)";
-          slider.style.backgroundColor = "red";
-        } else {
-          slider.style.top = "0";
-          slider.style.backgroundColor = "blue";
-        }
-        isSlidingDown = !isSlidingDown;
-      }
-
-      setInterval(slide, 4000);
-      slide();
-    </script>
   </body>
 </html>
