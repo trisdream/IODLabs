@@ -12,11 +12,12 @@
     <div id="main" style="width: 900px; height: 600px"></div>
     <script type="text/javascript">
       // Specify the configuration items and data for the chart
+      let myChart = echarts.init(document.getElementById("main"));
       let options = {
         title: { text: "Fake Store Categories" },
         tooltip: {},
         legend: {
-          data: ["category"],
+          data: ["# products"],
         },
         xAxis: {
           data: [],
@@ -33,15 +34,19 @@
       fetch("https://fakestoreapi.com/products")
         .then((response) => response.json())
         .then((json) => {
-          console.log(json);
+          const categoryCount = json.reduce((acc, product) => {
+            acc[product.category] = (acc[product.category] || 0) + 1;
+            return acc;
+          }, {});
+
           // use this JSON to find and set correct option data for the chart
-        })
-        .then(() => {
+
+          options.xAxis.data = Object.keys(categoryCount);
+          options.series[0].data = Object.values(categoryCount);
           // Display the chart
           myChart.setOption(options);
         });
       // Initialise the echarts instance based on the prepared div
-      let myChart = echarts.init(document.getElementById("main"));
     </script>
   </body>
 </html>

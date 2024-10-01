@@ -11,7 +11,7 @@
         height: 100vh;
         margin: 0;
         background-color: #ffffff;
-        overflow: hidden; /* Prevent scrollbars */
+        overflow: hidden;
       }
 
       #slider {
@@ -20,17 +20,17 @@
         background-color: blue;
         position: absolute;
         top: 0;
-        animation: slide 4s infinite alternate;
+        animation: slide 4s linear infinite alternate;
       }
 
       @keyframes slide {
         0% {
           top: 0;
-          background-color: blue;
+          background-color: red;
         }
         100% {
           top: calc(100vh - 100px);
-          background-color: red;
+          background-color: blue;
         }
       }
     </style>
