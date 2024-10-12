@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fake eCommerce Store</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        padding: 20px;
+      }
+      .card {
+        height: 100%;
+      }
+      .card-img-top {
+        height: 400px;
+      }
+      .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+      <a class="navbar-brand" href="#">Fake eCommerce Store</a>
+      <div class="collapse navbar-collapse">
+        <div class="navbar-nav">
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control"
+            placeholder="Search for items..."
+            style="width: 250px; margin-right: 10px"
+          />
+          <select
+            id="categorySelect"
+            class="form-control"
+            style="width: 200px; margin-right: 10px"
+          >
+            <option value="">All Categories</option>
+            <option value="electronics">Electronics</option>
+            <option value="jewelery">Jewelry</option>
+            <option value="men's clothing">Men's Clothing</option>
+            <option value="women's clothing">Women's Clothing</option>
+          </select>
+          <select id="sortSelect" class="form-control" style="width: 200px">
+            <option value="title">Sort by Title</option>
+            <option value="price">Sort by Price</option>
+          </select>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row" id="product-container"></div>
+    </div>
+
+    <script>
+      const apiUrl = "https://fakestoreapi.com/products";
+
+      async function fetchProducts() {
+        const response = await fetch(apiUrl);
+        const products = await response.json();
+        displayProducts(products);
+        setupEventListeners(products);
+      }
+
+      function displayProducts(products) {
+        const productContainer = document.getElementById("product-container");
+        productContainer.innerHTML = "";
+
+        products.forEach((product) => {
+          const card = `
+                    <div class="col-md-4 mb-4 product-card" data-category="${product.category}">
+                        <div class="card">
+                            <img src="${product.image}" class="card-img-top" alt="${product.title}">
+                            <div class="card-body">
+                                <h5 class="card-title">${product.title}</h5>
+                                <p class="card-text">${product.description}</p>
+                                <p class="card-text"><strong>$${product.price}</strong></p>
+                                <span class="badge badge-info">${product.category}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+          productContainer.innerHTML += card;
+        });
+      }
+
+      function setupEventListeners(products) {
+        document
+          .getElementById("searchInput")
+          .addEventListener("input", (event) => {
+            const searchTerm = event.target.value.toLowerCase();
+            const filteredProducts = products.filter((product) =>
+              product.title.toLowerCase().includes(searchTerm)
+            );
+            displayProducts(filteredProducts);
+          });
+
+        document
+          .getElementById("categorySelect")
+          .addEventListener("change", (event) => {
+            const selectedCategory = event.target.value;
+            const filteredProducts = selectedCategory
+              ? products.filter(
+                  (product) => product.category === selectedCategory
+                )
+              : products;
+            displayProducts(filteredProducts);
+          });
+
+        document
+          .getElementById("sortSelect")
+          .addEventListener("change", (event) => {
+            const sortBy = event.target.value;
+            const sortedProducts = [...products].sort((a, b) => {
+              if (sortBy === "title") {
+                return a.title.localeCompare(b.title);
+              } else {
+                return a.price - b.price;
+              }
+            });
+            displayProducts(sortedProducts);
+          });
+      }
+
+      window.onload = fetchProducts;
+    </script>
+  </body>
+</html>
