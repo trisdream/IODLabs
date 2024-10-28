@@ -11,6 +11,7 @@ function App() {
     alterEgo: "Peter Parker",
     catchPhrase: "With great power comes great responsibility",
   };
+
   const spideyJSX = (
     <div>
       <h3>{spiderman.name}</h3>
@@ -19,6 +20,13 @@ function App() {
     </div>
   );
 
+  const spideyJSXFragment = (
+    <div>
+      <h3>{spiderman.name}</h3>
+      <blockquote>{spiderman.catchPhrase}</blockquote>
+      <cite>{spiderman.alterEgo}</cite>
+    </div>
+  );
   return (
     <>
       <div>
@@ -29,8 +37,10 @@ function App() {
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
-      <h1>Spidey JSX</h1>
+      <h1>SpideyJSX</h1>
       {spideyJSX}
+      {spideyJSXFragment}
+
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
