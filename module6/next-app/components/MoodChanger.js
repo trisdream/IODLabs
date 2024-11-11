@@ -18,14 +18,36 @@ function MoodChanger() {
   };
 
   return (
-    <div className="MoodChanger componentBox">
+    <div className="MoodChanger componentBox h-screen">
       Current Mood: {mood}
-      <div className="space-x-4">
-        <button onClick={() => setMood("tired")}>Stay Up Late</button>
-        <button onClick={() => setMood("hungry")}>Skip Lunch</button>
-        <button onClick={() => setMood("happy")}>got a snack</button>
-        <button onClick={handleRunningLate}>Running Late</button>
-        <button onClick={handleWinLotto}>Win Lotto</button>
+      <div className="space-x-4 ">
+        <button
+          className="bg-purple-900 rounded-xl"
+          onClick={() => setMood("tired")}
+        >
+          Stay Up Late
+        </button>
+        <button
+          className="bg-purple-900 rounded-xl"
+          onClick={() => setMood("hungry")}
+        >
+          Skip Lunch
+        </button>
+        <button
+          className="bg-purple-900 rounded-xl"
+          onClick={() => setMood("happy")}
+        >
+          got a snack
+        </button>
+        <button
+          className="bg-purple-900 rounded-xl"
+          onClick={handleRunningLate}
+        >
+          Running Late
+        </button>
+        <button className="bg-purple-900 rounded-xl" onClick={handleWinLotto}>
+          Win Lotto
+        </button>
       </div>
     </div>
   );

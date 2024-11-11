@@ -1,5 +1,5 @@
 import React from "react";
-import EmojiChanger from "./EmojiChanger";
+import EmojiChanger from "@/components/EmojiChanger";
 
 function Page() {
   return (

@@ -1,5 +1,5 @@
-"useer client";
-import { usurState } from "react";
+"use client";
+import { useState } from "react";
 
 const phrases = new Map([
   ["english", "Happy Birthday"],
@@ -15,7 +15,7 @@ export function BirthdayTranslator() {
     setCurrentPhrase({ lang: newlang, phrase: phrases.get(newlang) });
   };
   return (
-    <div className="BirthdayTranslator componentBox">
+    <div className="BirthdayTranslator componentBox space-x-5">
       <h3>
         {currentPhrase.phrase}! ({currentPhrase.lang})
       </h3>

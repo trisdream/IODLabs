@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { SortButton } from "./SortButton";
+import { AddMovieForm } from "./AddMovieForm";
 
 const movies = [
   {
@@ -21,7 +22,7 @@ const movies = [
   },
 ];
 
-export function MovieList() {
+export default function MovieList() {
   const [currentMovies, setCurrentMovies] = useState(movies);
 
   const handleReverseMovies = () => {
@@ -42,35 +43,40 @@ export function MovieList() {
     setCurrentMovies(newMovies);
   };
 
+  const handleAddMovie = (e) => {
+    e.preventDefault();
+    // Creates key-value pair object with form input names/values
+    const data = new FormData(e.target);
+    onAddMovie(Object.fromEntries(data));
+  };
+
   return (
     <>
-      <hi>Movie List</hi>
-      <div className="flex justify-between">
+      <div className="flex justify-between list-none space-x-5">
         {currentMovies.map((movie, index) => (
           <li key={index}>
-            {movie.title}
-            {movie.synopsis}
+            {movie.title} {movie.synopsis} {movie.year}
           </li>
         ))}
       </div>
       <div>
         <button
-          className="px-2 py-3 bg-red-500 rounded-lg"
+          className="px-2 py-3 bg-purple-900 rounded-lg"
           onClick={handleReverseMovies}
         >
           Reverse List
         </button>
-        <SortButton
+        {/* <SortButton
           styles="bg-pink-500"
-          onClick={handleSortByTitle}
+          click={handleSortByTitle}
           text="Sort by Title"
         />
         <SortButton
           styles="bg-purple-500 "
-          onClick={handleSortbyYear}
+          click={handleSortbyYear}
           text="Sort by Year"
-        />
-        {/* <button
+        /> */}
+        <button
           onClick={handleSortByTitle}
           className="px-2 py-3 bg-pink-500 rounded-lg"
         >
@@ -81,8 +87,9 @@ export function MovieList() {
           className="px-2 py-3 bg-purple-500 rounded-lg"
         >
           Sort by Year
-        </button> */}
+        </button>
       </div>
+      <AddMovieForm onAddMovie={handleAddMovie} />;
     </>
   );
 }

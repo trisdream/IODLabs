@@ -1,4 +1,4 @@
-import { MovieList } from "@/components/MovieList";
+import MovieList from "@/components/MovieList";
 
 function Movie({ title, year, synopsis }) {
   return (
@@ -9,7 +9,7 @@ function Movie({ title, year, synopsis }) {
   );
 }
 
-export default function MovieList() {
+export default function MovieLists() {
   const movies = [
     {
       title: "The Shawshank Redemption",
@@ -30,18 +30,18 @@ export default function MovieList() {
 
   return (
     <>
-      <h1 className="text-4xl font-bold">MovieList</h1>
-
-      <MovieList />
-      {/* {movie.map((movie, index) => {
-    
-    <Movie
-    key={index}
-    title={movie.title}
-    year={movie.year}
-    synopsis={movie.synopsis}
-    />
-    })}*/}
+      <h1 className="text-4xl font-bold">Movie List</h1>
+      <div className="flex justify-between">
+        <MovieList />
+        {/* {movies.map((movie, index) => (
+          <Movie
+            key={index}
+            title={movie.title}
+            year={movie.year}
+            synopsis={movie.synopsis}
+          />
+        ))} */}
+      </div>
     </>
   );
 }
